@@ -19,9 +19,9 @@ UPDATE cloud.configuration SET value="600" WHERE name="vm.tranisition.wait.inter
 UPDATE cloud.configuration SET value="60" WHERE name="vpc.cleanup.interval";
 UPDATE cloud.configuration SET value="4" WHERE name="cpu.overprovisioning.factor";
 UPDATE cloud.configuration SET value="8" WHERE name="storage.overprovisioning.factor";
-UPDATE cloud.configuration SET value="192.168.56.11/32" WHERE name="secstorage.allowed.internal.sites";
-UPDATE cloud.configuration SET value="192.168.56.0/24" WHERE name="management.network.cidr";
-UPDATE cloud.configuration SET value="192.168.56.11" WHERE name="host";
+UPDATE cloud.configuration SET value="192.168.217.11/32" WHERE name="secstorage.allowed.internal.sites";
+UPDATE cloud.configuration SET value="192.168.217.0/24" WHERE name="management.network.cidr";
+UPDATE cloud.configuration SET value="192.168.217.11" WHERE name="host";
 UPDATE cloud.configuration SET value="false" WHERE name="check.pod.cidrs";
 UPDATE cloud.configuration SET value="0" WHERE name="network.throttling.rate";
 UPDATE cloud.configuration SET value="0" WHERE name="vm.network.throttling.rate";
@@ -36,5 +36,5 @@ UPDATE cloud.service_offering SET ram_size="128", speed="128" WHERE vm_type="sec
 UPDATE cloud.service_offering SET ram_size="128", speed="128" WHERE vm_type="internalloadbalancervm";
 UPDATE cloud.service_offering SET ram_size="128", speed="128" WHERE vm_type="consoleproxy";
 UPDATE cloud.vm_template SET removed=now() WHERE id="2";
-UPDATE cloud.vm_template SET url="http://192.168.56.11/centos56-x86_64.vhd.bz2" WHERE unique_name="centos56-x86_64-xen";
+UPDATE cloud.vm_template SET url="http://192.168.217.11/centos56-x86_64.vhd.bz2" WHERE unique_name="centos56-x86_64-xen";
 #UPDATE cloud.configuration SET value="true" WHERE name="system.vm.use.local.storage";
