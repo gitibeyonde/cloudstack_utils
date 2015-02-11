@@ -20,6 +20,8 @@ while getopts ":c:n:" o; do
         esac
 done
 
+git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pull
+
 if [ $c = "unknown" ]; then
         usage
 elif [ $c = "setup" ]; then
