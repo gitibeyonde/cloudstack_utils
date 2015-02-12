@@ -24,6 +24,8 @@ done
 
 if [ $c = "unknown" ]; then
         usage
+elif [ $c = "run" ]; then
+	mvn -pl :cloud-client-ui jetty:run
 elif [ $c = "build" ]; then
 	mvn clean install -P developer,systemvm -o -DskipTests=true
 	mvn -pl :cloud-client-ui jetty:run
