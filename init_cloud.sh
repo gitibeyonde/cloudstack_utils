@@ -24,6 +24,10 @@ git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pul
 
 if [ $c = "unknown" ]; then
         usage
+elif [ $c = "run" ]; then
+	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c run
+elif [ $c = "build" ]; then
+	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c build
 elif [ $c = "setup" ]; then
 	#git pull
   	ssh root@192.168.100.41 git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pull	
@@ -35,7 +39,7 @@ elif [ $c = "setup" ]; then
   	ssh root@192.168.100.40 git --git-dir=/exports/cloudstack/4.5/cloudstack/.git --work-tree=/exports/cloudstack/4.5/cloudstack pull	
 	sleep 120
 	#build
-	ssh root@192.168.100.41 ~/cloudstack_utils/build_cloud.sh
+	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c setup
 elif [ $c = "start" ]; then
 	vmrun start Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx
