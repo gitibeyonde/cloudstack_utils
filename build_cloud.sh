@@ -27,6 +27,8 @@ git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pul
 
 if [ $c = "unknown" ]; then
         usage
+elif [ $c = "db" ]; then
+	mysql -h localhost cloud -u cloud --password=cloud < virtual_box.sql
 elif [ $c = "run" ]; then
 	killall java
 	sleep 5
@@ -59,7 +61,9 @@ elif [ $c = "setup" ]; then
 
 	mvn -P developer -pl developer -Ddeploydb
 
+	cd /root/cloudstack_utils
 	mysql -h localhost cloud -u cloud --password=cloud < virtual_box.sql
+	cd /imports/4.5
 
 	mvn -pl :cloud-client-ui jetty:run
 fi
