@@ -52,7 +52,6 @@ elif [ $c = "setup" ]; then
 	rm -rf /exports/sec1/volumes
 	rm -rf /exports/sec2/snapshots
 	rm -rf /exports/sec2/volumes
-	sleep 5
 	cd /imports/4.5
 
 	#nohup ./client/target/generated-webapp/WEB-INF/classes/scripts/storage/secondary/cloud-install-sys-tmplt -m /exports/sec1 -u http://packages.shapeblue.com/systemvmtemplate/4.5/systemvm64template-4.5-xen.vhd.bz2 -h xenserver -F &
@@ -61,9 +60,8 @@ elif [ $c = "setup" ]; then
 
 	mvn -P developer -pl developer -Ddeploydb
 
-	cd /root/cloudstack_utils
-	mysql -h localhost cloud -u cloud --password=cloud < virtual_box.sql
-	cd /imports/4.5
+	mysql -h localhost cloud -u cloud --password=cloud < /root/cloudstack_utils/virtual_box.sql
 
-	mvn -pl :cloud-client-ui jetty:run
+	nohup mvn -pl :cloud-client-ui jetty:run 2>&1 > /dev/null &
+
 fi

@@ -1,5 +1,5 @@
 SET SQL_SAFE_UPDATES = 0;
-INSERT INTO cloud.configuration (category, instance, component, name, value, description) VALUES ("Advanced", "DEFAULT", "management-server", "xen.check.hvm", "false", "Shoud we allow only the XenServers support HVM");
+INSERT INTO cloud.configuration (category, instance, component, name, value, description) VALUES ("Advanced", "DEFAULT", "management-server", "xen.check.hvm", "false", "Shoud we allow only the XenServers support HVM") on duplicate key update  value="false";
 UPDATE cloud.configuration SET value="8096" WHERE name="integration.api.port";
 UPDATE cloud.configuration SET value="60" WHERE name="expunge.delay";
 UPDATE cloud.configuration SET value="60" WHERE name="expunge.interval";
