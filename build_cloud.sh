@@ -39,7 +39,7 @@ elif [ $c = "build" ]; then
 	cd /imports/4.5
 
 	cd /imports/4.5
-	mvn clean install -P developer,systemvm -o -DskipTests=true
+	mvn clean install -P developer,systemvm -DskipTests=true
 	mvn -pl :cloud-client-ui jetty:run
 elif [ $c = "setup" ]; then
 	killall java
