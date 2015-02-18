@@ -20,7 +20,7 @@ while getopts ":c:n:" o; do
         esac
 done
 
-git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pull
+git --git-dir=/Users/abhinandanprateek/work/shapeblue/cloudstack_utils/.git --work-tree=/Users/abhinandanprateek/work/shapeblue/cloudstack_utils fetch
 
 if [ $c = "unknown" ]; then
         usage
@@ -30,7 +30,7 @@ elif [ $c = "build" ]; then
 	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c build
 elif [ $c = "setup" ]; then
 	#git pull
-  	ssh root@192.168.100.41 git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pull	
+  	ssh root@192.168.100.41 cd /root/cloudstack_utils;git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils fetch	
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx Initial_setup_snap
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_1.vmwarevm/Xen65_1.vmx Initial_setup_snap
