@@ -20,8 +20,8 @@
 zone_name=Bootcamp
 guest_cidr=10.1.1.0/24
 guest_vlan_range=650-669
-dns_ext1=8.8.8.8
-dns_int1=192.168.100.1
+dns_ext1=192.168.100.1
+dns_int1=8.8.8.8
 
 sec_stor1_name=SEC1
 sec_stor1_url=nfs://192.168.217.11/exports/sec1
@@ -35,12 +35,11 @@ phy1_speed=1G
 mgmtlab=MGMT
 guestlab=GUEST
 publiclab=PUBLIC
-storagelab=MGMT
 
 #Public Network Settings
-public_start=192.168.100.135
-public_end=192.168.100.155
-public_gateway=192.168.100.175
+public_start=192.168.100.65
+public_end=192.168.100.95
+public_gateway=192.168.100.1
 public_netmask=255.255.255.0
 public_vlan=
 
