@@ -22,6 +22,9 @@ while getopts ":c:v:" o; do
         esac
 done
 
+cd /root/cloudstack_utils
+git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils pull
+
 if [ $c = "unknown" ]; then
         usage
 elif [ $c = "run" ]; then
