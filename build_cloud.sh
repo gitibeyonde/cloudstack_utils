@@ -26,13 +26,21 @@ if [ $c = "unknown" ]; then
         usage
 elif [ $c = "run" ]; then
 	killall java
+	sleep 5
+	cd /imports/4.5
+
 	mvn -pl :cloud-client-ui jetty:run
 elif [ $c = "build" ]; then
 	killall java
+	sleep 5
+	cd /imports/4.5
+
+	cd /imports/4.5
 	mvn clean install -P developer,systemvm -o -DskipTests=true
 	mvn -pl :cloud-client-ui jetty:run
 elif [ $c = "setup" ]; then
 	killall java
+	sleep 5
 	cd /imports/4.5
 
 	#nohup ./client/target/generated-webapp/WEB-INF/classes/scripts/storage/secondary/cloud-install-sys-tmplt -m /exports/sec1 -u http://packages.shapeblue.com/systemvmtemplate/4.5/systemvm64template-4.5-xen.vhd.bz2 -h xenserver -F &
