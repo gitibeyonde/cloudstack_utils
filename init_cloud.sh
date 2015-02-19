@@ -21,7 +21,7 @@ while getopts ":c:n:" o; do
 done
 
 cd /Users/abhinandanprateek/work/shapeblue/cloudstack_utils
-git --git-dir=/Users/abhinandanprateek/work/shapeblue/cloudstack_utils/.git --work-tree=/Users/abhinandanprateek/work/shapeblue/cloudstack_utils pull
+#git --git-dir=/Users/abhinandanprateek/work/shapeblue/cloudstack_utils/.git --work-tree=/Users/abhinandanprateek/work/shapeblue/cloudstack_utils pull
 
 if [ $c = "unknown" ]; then
         usage
@@ -30,7 +30,7 @@ elif [ $c = "run" ]; then
 elif [ $c = "build" ]; then
   	ssh root@192.168.100.40 git --git-dir=/exports/cloudstack/4.5/cloudstack/.git --work-tree=/exports/cloudstack/4.5/cloudstack pull	
 	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c build
-elif [ $c = "rest" ]; then
+elif [ $c = "reset" ]; then
 	#git pull
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx Initial_setup_snap
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx Initial_setup_snap
@@ -52,11 +52,10 @@ elif [ $c = "setup" ]; then
 elif [ $c = "start" ]; then
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_1.vmwarevm/Xen65_1.vmx 
-	vmrun start Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
+	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
 elif [ $c = "stop" ]; then
 	vmrun stop /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx
 	vmrun stop /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_1.vmwarevm/Xen65_1.vmx 
-	sleep 20
 	vmrun stop /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
 fi
 
