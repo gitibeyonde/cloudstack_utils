@@ -40,11 +40,12 @@ elif [ $c = "setup" ]; then
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx Initial_setup_snap
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx Initial_setup_snap
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_1.vmwarevm/Xen65_1.vmx Initial_setup_snap
-	sleep 60
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
+	sleep 30
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx
+	sleep 60
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_1.vmwarevm/Xen65_1.vmx 
-	sleep 120
+	sleep 60
   	ssh root@192.168.100.40 git --git-dir=/exports/cloudstack/4.5/cloudstack/.git --work-tree=/exports/cloudstack/4.5/cloudstack pull	
 	#build
 	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c setup

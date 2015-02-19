@@ -59,7 +59,7 @@ elif [ $c = "setup" ]; then
 
 	mvn -P developer -pl developer -Ddeploydb
 
-	mysql -h localhost cloud -u cloud --password=cloud < virtual_box.sql
+	mysql -h localhost cloud -u cloud --password=cloud < /root/cloudstack_utils/virtual_box.sql
 
 	mvn -pl :cloud-client-ui jetty:run
 fi
