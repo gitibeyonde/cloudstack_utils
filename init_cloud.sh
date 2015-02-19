@@ -25,8 +25,11 @@ done
 if [ $c = "unknown" ]; then
         usage
 elif [ $c = "run" ]; then
+  	ssh root@192.168.100.41 "git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils fetch"
 	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c run
 elif [ $c = "build" ]; then
+  	ssh root@192.168.100.40 git --git-dir=/exports/cloudstack/4.5/cloudstack/.git --work-tree=/exports/cloudstack/4.5/cloudstack pull	
+  	ssh root@192.168.100.41 "git --git-dir=/root/cloudstack_utils/.git --work-tree=/root/cloudstack_utils fetch"
 	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c build
 elif [ $c = "setup" ]; then
 	#git pull
