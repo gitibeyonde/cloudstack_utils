@@ -19,7 +19,7 @@ UPDATE cloud.configuration SET value="600" WHERE name="vm.tranisition.wait.inter
 UPDATE cloud.configuration SET value="60" WHERE name="vpc.cleanup.interval";
 UPDATE cloud.configuration SET value="4" WHERE name="cpu.overprovisioning.factor";
 UPDATE cloud.configuration SET value="8" WHERE name="storage.overprovisioning.factor";
-UPDATE cloud.configuration SET value="192.168.217.11/32" WHERE name="secstorage.allowed.internal.sites";
+UPDATE cloud.configuration SET value="192.168.217.0/24" WHERE name="secstorage.allowed.internal.sites";
 UPDATE cloud.configuration SET value="192.168.217.0/24" WHERE name="management.network.cidr";
 UPDATE cloud.configuration SET value="192.168.217.11" WHERE name="host";
 UPDATE cloud.configuration SET value="false" WHERE name="check.pod.cidrs";
