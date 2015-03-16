@@ -29,6 +29,13 @@ if [ $c = "unknown" ]; then
         usage
 elif [ $c = "reset" ]; then
 	killall java
+	#clean primary store
+	rm -rf /exports/prim1/*
+	rm -rf /exports/prim2/*
+	rm -rf /exports/sec1/snapshots
+	rm -rf /exports/sec1/volumes
+	rm -rf /exports/sec2/snapshots
+	rm -rf /exports/sec2/volumes
 	sleep 5
 	cd /imports/4.5
 	mvn -P developer -pl developer -Ddeploydb
