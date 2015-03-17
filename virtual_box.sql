@@ -37,4 +37,5 @@ UPDATE cloud.service_offering SET ram_size="128", speed="128" WHERE vm_type="int
 UPDATE cloud.service_offering SET ram_size="128", speed="128" WHERE vm_type="consoleproxy";
 UPDATE cloud.vm_template SET removed=now() WHERE id="2";
 UPDATE cloud.vm_template SET url="http://192.168.217.11/centos56-x86_64.vhd.bz2" WHERE unique_name="centos56-x86_64-xen";
+#http://192.168.217.11/macchinina-xen.vhd.bz2
 #UPDATE cloud.configuration SET value="true" WHERE name="system.vm.use.local.storage";
