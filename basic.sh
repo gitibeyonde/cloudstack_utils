@@ -6,17 +6,17 @@ dns_int=8.8.8.8
 gw=192.168.100.1
 nmask=255.255.255.0
 hpvr=XenServer
-pod_start=10.147.28.225
-pod_end=10.147.28.234
-vlan_start=10.147.28.235
-vlan_end=10.147.28.254
+pod_start=192.168.217.35
+pod_end=192.168.217.55
+vlan_start=192.168.217.56
+vlan_end=192.168.217.86
  
 #Put space separated host ips in following
-host_ips=10.147.28.60
+host_ips=192.168.217.12
 host_user=root
 host_passwd=password
-sec_storage=nfs://10.147.28.7/export/home/rohit/secondary
-prm_storage=nfs://10.147.28.7/export/home/rohit/primary
+sec_storage=nfs://192.168.217.11/exports/sec1
+prm_storage=nfs://192.168.217.11/exports/prim1
  
 zone_id=`$cli create zone dns1=$dns_ext internaldns1=$dns_int name=MyZone networktype=Basic | grep ^id\ = | awk '{print $3}'`
 echo "Created zone" $zone_id
