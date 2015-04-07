@@ -26,8 +26,21 @@ cd /root/cloudstack
 
 if [ $c = "unknown" ]; then
         usage
-elif [ $c = "db" ]; then
-	mysql -h localhost cloud -u cloud --password=cloud < virtual_box.sql
+elif [ $c = "reset" ]; then
+	killall java
+	#clean primary store
+	rm -rf /exports/prim1/*
+	rm -rf /exports/prim2/*
+	rm -rf /exports/sec1/snapshots
+	rm -rf /exports/sec1/volumes
+	rm -rf /exports/sec2/snapshots
+	rm -rf /exports/sec2/volumes
+	sleep 5
+	cd /imports/4.5
+	mvn -P developer -pl developer -Ddeploydb
+	nohup mvn -pl :cloud-client-ui jetty:run 2>&1 > /dev/null &
+	mysql -h localhost cloud -u cloud --password=cloud < /root/cloudstack_utils/virtual_box.sql
+
 elif [ $c = "run" ]; then
 	killall java
 	sleep 5
