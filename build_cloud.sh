@@ -36,7 +36,6 @@ elif [ $c = "reset" ]; then
 	rm -rf /exports/sec2/snapshots
 	rm -rf /exports/sec2/volumes
 	sleep 5
-	cd /imports/4.5
 	mvn -P developer -pl developer -Ddeploydb
 	nohup mvn -pl :cloud-client-ui jetty:run 2>&1 > /dev/null &
 	mysql -h localhost cloud -u cloud --password=cloud < /root/cloudstack_utils/virtual_box.sql
