@@ -23,6 +23,7 @@ while getopts ":c:v:" o; do
 done
 
 cd /root/cloudstack
+/etc/vmware-tools/services.sh restart
 
 if [ $c = "unknown" ]; then
         usage
