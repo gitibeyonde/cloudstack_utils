@@ -59,6 +59,7 @@ p1_cluster1_hypervisor=XenServer
 p1_cluster1_type=CloudManaged
 p1_cluster1_name=CLU1
 p1_cluster1_host_ip=192.168.217.12
+p1_cluster1_host2_ip=192.168.217.14
 
 #POD1 Cluster1 Primary Storage Settings
 p1_cluster1_pri_stor1_name=PRI1
@@ -79,36 +80,57 @@ yum install -y nc
 
 # POD1 Cluster 1 Checks
 P1_PORT80=`nc -z -w5 $p1_cluster1_host_ip 80; echo $?`
+P12_PORT80=`nc -z -w5 $p1_cluster1_host2_ip 80; echo $?`
 
 if [[ $P1_PORT80 = '1' ]]
 	then
 	echo "Unable to connect to POD 1 Cluster 1 Host on Port 80 - Exiting"
 	exit
 fi
+if [[ $P12_PORT80 = '1' ]]
+	then
+	echo "Unable to connect to POD 1 Cluster 1 Host 2 on Port 80 - Exiting"
+	exit
+fi
 
-echo "Successsfully connected on Port 80 to POD 1 Cluster 1 Host "$p1_cluster1_host
+echo "Successsfully connected on Port 80 to POD 1 Cluster 1 Host "$p1_cluster1_host_ip
+echo "Successsfully connected on Port 80 to POD 1 Cluster 1 Host "$p1_cluster1_host2_ip
 
 
 P1_PORT443=`nc -z -w5 $p1_cluster1_host_ip 443; echo $?`
+P12_PORT443=`nc -z -w5 $p1_cluster1_host2_ip 443; echo $?`
 
 if [[ $P1_PORT443 = '1' ]]
 	then
 	echo "Unable to connect to POD 1 Cluster 1 Host on Port 443 - Exiting"
 	exit
 fi
+if [[ $P12_PORT443 = '1' ]]
+	then
+	echo "Unable to connect to POD 1 Cluster 1 Host on Port 443 - Exiting"
+	exit
+fi
 
-echo "Successsfully connected on Port 443 to POD 1 Cluster 1 Host "$p1_cluster1_host
+echo "Successsfully connected on Port 443 to POD 1 Cluster 1 Host "$p1_cluster1_host_ip
+echo "Successsfully connected on Port 443 to POD 1 Cluster 1 Host 2 "$p1_cluster1_host2_ip
 
 
 P1_PORT22=`nc -z -w5 $p1_cluster1_host_ip 22; echo $?`
+P12_PORT22=`nc -z -w5 $p1_cluster1_host2_ip 22; echo $?`
 
 if [[ $P1_PORT22 = '1' ]]
 	then
 	echo "Unable to connect to POD 1 Cluster 1 Host on Port 22 - Exiting"
 	exit
 fi
+if [[ $P12_PORT22 = '1' ]]
+	then
+	echo "Unable to connect to POD 1 Cluster 1 Host 2 on Port 22 - Exiting"
+	exit
+fi
 
-echo "Successsfully connected on Port 22 to POD 1 Cluster 1 Host "$p1_cluster1_host
+echo "Successsfully connected on Port 22 to POD 1 Cluster 1 Host "$p1_cluster1_host_ip
+echo "Successsfully connected on Port 22 to POD 1 Cluster 1 Host 2"$p1_cluster1_host2_ip
 
 # ************************ System Tests End ************************
 
@@ -183,6 +205,15 @@ echo "Created Cluster - " $p1_cluster1_name - $p1_cluster1_id
 echo "Now adding Hosts, this can take some time so please be patient"
 $cli add host zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id hypervisor=$p1_cluster1_hypervisor username=$host_username password=$host_password url=http://$p1_cluster1_host_ip
 echo "Added Hosts for POD1 Cluster 1"
+
+ssh root@192.168.217.14 'sh /root/cloud-setup-bonding.sh'
+ssh root@192.168.217.14 'xe pool-join master-address=192.168.217.12 master-username=root master-password=password'
+
+sleep 20
+
+$cli add host zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id hypervisor=$p1_cluster1_hypervisor username=$host_username password=$host_password url=http://$p1_cluster1_host2_ip
+echo "Added Hosts 2 for POD1 Cluster 1"
+
 
 # ************************ Add Primary Storage ************************
 echo "About to add Primary Storage - confirm all hosts are online in CloudStack UI before continuing"

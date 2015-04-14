@@ -2,8 +2,8 @@
  
 cli=cloudmonkey
 dns_ext=192.168.100.1
-dns_int=8.8.8.8
-gw=192.168.100.1
+dns_int=192.168.217.1
+gw=192.168.217.1
 nmask=255.255.255.0
 hpvr=XenServer
 pod_start=192.168.217.35
