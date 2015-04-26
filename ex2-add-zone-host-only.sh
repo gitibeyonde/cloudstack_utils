@@ -76,8 +76,6 @@ $cli set display default
 
 # ************************ System Tests ************************
 
-yum install -y nc
-
 # POD1 Cluster 1 Checks
 P1_PORT80=`nc -z -w5 $p1_cluster1_host_ip 80; echo $?`
 P12_PORT80=`nc -z -w5 $p1_cluster1_host2_ip 80; echo $?`
