@@ -28,8 +28,8 @@ vlan_end=172.16.16.95
 host_ips=192.168.100.46
 host_user=root
 host_passwd=password
-sec_storage='nfs://192.168.217.11/exports/sec1'
-prm_storage='nfs://192.168.217.11/exports/prim1'
+sec_storage='nfs://192.168.100.41/exports/sec1'
+prm_storage='nfs://192.168.100.41/exports/prim1'
 local_storage=false
 
 zone_id=`$cli create zone dns1=$dns_ext internaldns1=$dns_int securitygroupenabled=false localstorageenabled=$local_storage name=NinjaZone networktype=Basic | grep ^id\ = | awk '{print $3}'`
