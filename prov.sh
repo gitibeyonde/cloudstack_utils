@@ -4,7 +4,7 @@ set -x
 
 TMP=/tmp
 CLOUDDIR=/root/cloudstack
-mkdir -p $TMP/integration-test-results/misc
+mkdir -p $TMP/prov_comp/misc
 mkdir -p $TMP/prov_smoke/misc
 
 
@@ -16,7 +16,7 @@ PSTESTS="test_deploy_vgpu_enabled_vm test_deploy_vm_root_resize test_deploy_vm_w
 
 
 #for suite in $CTESTS; do 
-	#nosetests --with-xunit --xunit-file=$TMP/integration-test-results/$suite.xml --with-marvin --marvin-config=$CLOUDDIR/setup/dev/advanced.cfg $CLOUDDIR/test/integration/component/$suite.py -s -a tags=advanced,required_hardware=true --zone=Bootcamp --hypervisor=xenserver 
+	#nosetests --with-xunit --xunit-file=$TMP/prov_comp/$suite.xml --with-marvin --marvin-config=$CLOUDDIR/setup/dev/advanced.cfg $CLOUDDIR/test/integration/component/$suite.py -s -a tags=advanced,required_hardware=true --zone=Bootcamp --hypervisor=xenserver 
 #done
 
 for suite in $PSTESTS; do 
