@@ -24,7 +24,7 @@ dns_ext1=192.168.100.1
 dns_int1=8.8.8.8
 
 sec_stor1_name=SEC1
-sec_stor1_url=nfs://192.168.217.11/exports/sec1
+sec_stor1_url=nfs://192.168.217.11/exports/sec2
 
 #Physical Network Settings
 phy1_name="Physical Network 1"
