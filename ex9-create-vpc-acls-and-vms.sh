@@ -14,7 +14,7 @@
 
 zone_name=Bootcamp
 
-template_name='"macchinina"'
+template_name='"macchinina-xen"'
 #template_name='"CentOS 5.6(64-bit) no GUI (XenServer)"'
 service_offering_name='"Ultra Tiny"'
 

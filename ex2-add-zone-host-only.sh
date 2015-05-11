@@ -220,4 +220,8 @@ echo "Now adding Primary Storage"
 $cli create storagepool zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id name=$p1_cluster1_pri_stor1_name url=$p1_cluster1_pri_stor1_url
 echo "Added Primary Storage - "$p1_cluster1_pri_stor1_name
 
+#register template
+$cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=macchinina-xen displaytext=macchinina-xen zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=0605debe-f517-11e4-9ed7-00505635944c passwordenabled=true ispublic=true isfeatured=true hvm=true
+
+
 echo "Done"
