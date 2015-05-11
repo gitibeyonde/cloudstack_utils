@@ -14,7 +14,7 @@
 
 zone_name=Bootcamp
 network_offering_name=DefaultIsolatedNetworkOfferingWithSourceNatService
-template_name='"macchinina"'
+template_name='"macchinina-xen"'
 service_offering_name='"Ultra Tiny"'
 
 domain_name=wayne
