@@ -38,10 +38,10 @@ elif [ $c = "reset" ]; then
 	ssh root@192.168.100.41 /root/cloudstack_utils/build_cloud.sh -c reset
 elif [ $c = "setup" ]; then
 	#git pull
-	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx Initial_setup_snap
+	#vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx Initial_setup_snap
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx Initial_setup_snap
 	vmrun revertToSnapshot /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_1.vmwarevm/Xen65_1.vmx Initial_setup_snap
-	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
+	#vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/ccp.vmwarevm/ccp.vmx
 	sleep 30
 	vmrun start /Users/abhinandanprateek/Documents/Virtual\ Machines.localized/Xen65_2.vmwarevm/Xen65_2.vmx
 	sleep 60
