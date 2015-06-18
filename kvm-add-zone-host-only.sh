@@ -21,7 +21,7 @@ set -x
 zone_name=Bootcamp
 guest_cidr=10.1.1.0/24
 guest_vlan_range=650-669
-dns_ext1=192.168.100.1
+dns_ext1=192.168.217.1
 dns_int1=8.8.8.8
 
 sec_stor1_name=SEC1
@@ -192,7 +192,7 @@ ostype_id=`$cli list ostypes description="Other Linux (64-bit)"  | grep ^id\ = |
 echo "OS type id = "$ostype_id
 
 #register template
-$cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=macchinina-xen displaytext=macchinina-xen zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=$ostype_id passwordenabled=true ispublic=true isfeatured=true hvm=true
+$cli register template url=http://192.168.217.11/macchinina-kvm.qcow2.bz2 name=macchinina-kvm displaytext=macchinina-kvm zoneid=$zone_id hypervisor=KVM format=qcow2 ostypeid=$ostype_id passwordenabled=true ispublic=true isfeatured=true hvm=true
 
 
 echo "Done"
