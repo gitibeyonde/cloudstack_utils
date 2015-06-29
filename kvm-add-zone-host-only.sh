@@ -37,7 +37,7 @@ mgmtlab=MGMT
 guestlab=GUEST
 publiclab=PUBLIC
 
-#Public Network Settings
+#Public Network Settings GUEST TRAFFIC
 public_start=192.168.100.65
 public_end=192.168.100.95
 public_gateway=192.168.100.1
