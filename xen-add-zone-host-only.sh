@@ -221,6 +221,8 @@ $cli create storagepool zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_
 echo "Added Primary Storage - "$p1_cluster1_pri_stor1_name
 
 #register template
+echo "About to register template, chekc if your SSVM is up"
+echo "Press Enter to Continue" ; read
 
 #Obtain Required Resource IDs
 #get os type id

@@ -39,6 +39,11 @@ elif [ $c = "reset" ]; then
 	sleep 5
 	mvn -P developer -pl developer -Ddeploydb
 	nohup mvn -pl :cloud-client-ui jetty:run 2>&1 > /dev/null &
+
+	sleep 60
+	killall java
+	sleep 10
+
 	mysql -h localhost cloud -u cloud --password=cloud < /root/cloudstack_utils/virtual_box.sql
 
 elif [ $c = "run" ]; then

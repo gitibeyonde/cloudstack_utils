@@ -58,12 +58,12 @@ p1_reserved_system_end_ip=192.168.217.75
 #POD1 Cluster1 Settings
 p1_cluster1_hypervisor=KVM
 p1_cluster1_type=CloudManaged
-p1_cluster1_name=CLU1
+p1_cluster1_name=KVMCLU1
 p1_cluster1_host_ip=192.168.217.22
-#p1_cluster1_host2_ip=192.168.217.24
+p1_cluster1_host2_ip=192.168.217.24
 
 #POD1 Cluster1 Primary Storage Settings
-p1_cluster1_pri_stor1_name=PRI1
+p1_cluster1_pri_stor1_name=PRI2
 p1_cluster1_pri_stor1_url=nfs://192.168.217.11/exports/prim1
 
 # ************************ Global Variables End ************************
@@ -168,13 +168,10 @@ echo "Now adding Hosts, this can take some time so please be patient"
 $cli add host zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id hypervisor=$p1_cluster1_hypervisor username=$host_username password=$host_password url=http://$p1_cluster1_host_ip
 echo "Added Hosts for POD1 Cluster 1"
 
-#ssh root@192.168.217.14 'xe pool-join master-address=192.168.217.12 master-username=root master-password=password'
-#ssh root@192.168.217.14 'sh /root/cloud-setup-bonding.sh'
+sleep 20
 
-#sleep 20
-
-#$cli add host zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id hypervisor=$p1_cluster1_hypervisor username=$host_username password=$host_password url=http://$p1_cluster1_host2_ip
-#echo "Added Hosts 2 for POD1 Cluster 1"
+$cli add host zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id hypervisor=$p1_cluster1_hypervisor username=$host_username password=$host_password url=http://$p1_cluster1_host2_ip
+echo "Added Hosts 2 for POD1 Cluster 1"
 
 
 # ************************ Add Primary Storage ************************
@@ -185,6 +182,8 @@ $cli create storagepool zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_
 echo "Added Primary Storage - "$p1_cluster1_pri_stor1_name
 
 #register template
+echo "About to register template, check if your system vms are up"
+echo "Press Enter to Continue" ; read
 
 #Obtain Required Resource IDs
 #get os type id
