@@ -66,7 +66,6 @@ elif [ $c = "setup" ]; then
 	rm -rf /exports/sec2/volumes
 
 	#nohup ./client/target/generated-webapp/WEB-INF/classes/scripts/storage/secondary/cloud-install-sys-tmplt -m /exports/sec1 -u http://packages.shapeblue.com/systemvmtemplate/4.5/systemvm64template-4.5-xen.vhd.bz2 -h xenserver -F &
-	#./client/target/generated-webapp/WEB-INF/classes/scripts/storage/secondary/cloud-install-sys-tmplt -m /exports/sec1 -u http://packages.shapeblue.com/systemvmtemplate/4.6/systemvm64template-master-4.6.0-xen.vhd.bz2 -h xenserver -F
 
 	mvn clean install -P developer,systemvm -DskipTests=true
 
