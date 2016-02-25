@@ -230,7 +230,10 @@ ostype_id=`$cli list ostypes description="Other Linux (64-bit)"  | grep ^id\ = |
 echo "OS type id = "$ostype_id
 
 #register template
-$cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=macchinina-xen displaytext=macchinina-xen zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=$ostype_id passwordenabled=true ispublic=true isfeatured=true hvm=true
+$cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=macchinina-xen displaytext=macchinina-xen zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=$ostype_id passwordenabled=false ispublic=true isfeatured=true hvm=true
+
+#register template
+$cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=pass-macchinina-xen displaytext=pass-macchinina-xen zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=$ostype_id passwordenabled=true ispublic=true isfeatured=true hvm=true
 
 
 echo "Done"

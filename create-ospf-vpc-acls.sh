@@ -4,6 +4,7 @@
 zone_name=Bootcamp
 
 template_name='"macchinina-xen"'
+pass_template_name='"pass-macchinina-xen"'
 #template_name='"CentOS 5.6(64-bit) no GUI (XenServer)"'
 service_offering_name='"Ultra Tiny"'
 
@@ -86,6 +87,8 @@ echo "VPC Tier 2 Offering ID = "$vpc_t2_offering_id
 
 template_id=`$cli list templates name=$template_name templatefilter=featured | grep ^id\ = | awk '{print $3}'`
 echo "Template ID = "$template_id
+pass_template_id=`$cli list templates name=$pass_template_name templatefilter=featured | grep ^id\ = | awk '{print $3}'`
+echo "Pass Template ID = "$pass_template_id
 
 serviceoffering_id=`$cli list serviceofferings name=$service_offering_name | grep ^id\ = | awk '{print $3}'`
 echo "Service Offering ID = "$serviceoffering_id
@@ -121,6 +124,8 @@ tier1_acl3_id=`$cli create networkacl protocol=tcp aclid=$tier1_acllist_id cidrl
 echo "Rule 3 Created"
 tier1_acl4_id=`$cli create networkacl protocol=icmp aclid=$tier1_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=egress action=allow | grep ^id\ = | awk '{print $3}'`
 echo "Rule 4 Created"
+tier1_acl5_id=`$cli create networkacl protocol=icmp aclid=$tier1_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
+echo "Rule 5 Created"
 echo "ACL Rules for Tier 1 Created"
 echo " "
 
@@ -134,8 +139,14 @@ tier2_acl1_id=`$cli create networkacl protocol=tcp aclid=$tier2_acllist_id cidrl
 echo "Rule 1 Created"
 tier2_acl2_id=`$cli create networkacl protocol=icmp aclid=$tier2_acllist_id cidrlist=172.16.1.0/24 icmptype=-1 icmpcode=-1 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
 echo "Rule 2 Created"
-tier2_acl3_id=`$cli create networkacl protocol=all aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 traffictype=egress action=deny | grep ^id\ = | awk '{print $3}'`
+tier2_acl3_id=`$cli create networkacl protocol=tcp aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 startport=22 endport=22 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
 echo "Rule 3 Created"
+tier2_acl4_id=`$cli create networkacl protocol=icmp aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=egress action=allow | grep ^id\ = | awk '{print $3}'`
+echo "Rule 4 Created"
+tier2_acl5_id=`$cli create networkacl protocol=icmp aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
+echo "Rule 5 Created"
+tier2_acl6_id=`$cli create networkacl protocol=all aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 traffictype=egress action=deny | grep ^id\ = | awk '{print $3}'`
+echo "Rule 6 Created"
 echo "ACL Rules for Tier 2 Created"
 echo " "
 
@@ -167,7 +178,7 @@ echo " "
 
 # ************************ Create VM 002 ************************
 echo "$vm002_name is deploying - please wait"
-vm002_jobid=`$cli deploy virtualmachine serviceofferingid=$serviceoffering_id templateid=$template_id zoneid=$zone_id account=$account domainid=$domain_id networkids=$vpc_tier2_network_id ipaddress=$vm002_ip_addr name=$vm002_name displayname=$vm002_display_name | grep ^jobid\ = | awk '{print $3}'`
+vm002_jobid=`$cli deploy virtualmachine serviceofferingid=$serviceoffering_id templateid=$pass_template_id zoneid=$zone_id account=$account domainid=$domain_id networkids=$vpc_tier2_network_id ipaddress=$vm002_ip_addr name=$vm002_name displayname=$vm002_display_name | grep ^jobid\ = | awk '{print $3}'`
 echo "Deploy VM Job ID ="$vm002_jobid
 
 vm002_status=`$cli query asyncjobresult jobid=$vm002_jobid | grep ^jobstatus\ = | awk '{print $3}'`
@@ -215,6 +226,8 @@ tier1_acl3_id=`$cli create networkacl protocol=tcp aclid=$tier1_acllist_id cidrl
 echo "Rule 3 Created"
 tier1_acl4_id=`$cli create networkacl protocol=icmp aclid=$tier1_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=egress action=allow | grep ^id\ = | awk '{print $3}'`
 echo "Rule 4 Created"
+tier1_acl5_id=`$cli create networkacl protocol=icmp aclid=$tier1_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
+echo "Rule 5 Created"
 echo "ACL Rules for Tier 1 Created"
 echo " "
 
@@ -229,8 +242,14 @@ tier2_acl1_id=`$cli create networkacl protocol=tcp aclid=$tier2_acllist_id cidrl
 echo "Rule 1 Created"
 tier2_acl2_id=`$cli create networkacl protocol=icmp aclid=$tier2_acllist_id cidrlist=172.16.6.0/24 icmptype=-1 icmpcode=-1 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
 echo "Rule 2 Created"
-tier2_acl3_id=`$cli create networkacl protocol=all aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 traffictype=egress action=deny | grep ^id\ = | awk '{print $3}'`
+tier2_acl3_id=`$cli create networkacl protocol=tcp aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 startport=22 endport=22 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
 echo "Rule 3 Created"
+tier2_acl4_id=`$cli create networkacl protocol=icmp aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=egress action=allow | grep ^id\ = | awk '{print $3}'`
+echo "Rule 4 Created"
+tier2_acl5_id=`$cli create networkacl protocol=icmp aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 icmptype=-1 icmpcode=-1 traffictype=ingress action=allow | grep ^id\ = | awk '{print $3}'`
+echo "Rule 5 Created"
+tier2_acl6_id=`$cli create networkacl protocol=all aclid=$tier2_acllist_id cidrlist=0.0.0.0/0 traffictype=egress action=deny | grep ^id\ = | awk '{print $3}'`
+echo "Rule 6 Created"
 echo "ACL Rules for Tier 2 Created"
 echo " "
 
@@ -262,7 +281,7 @@ echo " "
 
 # ************************ Create VM 002 ************************
 echo "$vpc2_vm002_name is deploying - please wait"
-vm002_jobid=`$cli deploy virtualmachine serviceofferingid=$serviceoffering_id templateid=$template_id zoneid=$zone_id account=$account domainid=$domain_id networkids=$vpc_tier2_network_id ipaddress=$vpc2_vm002_ip_addr name=$vpc2_vm002_name displayname=$vpc2_vm002_display_name | grep ^jobid\ = | awk '{print $3}'`
+vm002_jobid=`$cli deploy virtualmachine serviceofferingid=$serviceoffering_id templateid=$pass_template_id zoneid=$zone_id account=$account domainid=$domain_id networkids=$vpc_tier2_network_id ipaddress=$vpc2_vm002_ip_addr name=$vpc2_vm002_name displayname=$vpc2_vm002_display_name | grep ^jobid\ = | awk '{print $3}'`
 echo "Deploy VM Job ID ="$vm002_jobid
 
 vm002_status=`$cli query asyncjobresult jobid=$vm002_jobid | grep ^jobstatus\ = | awk '{print $3}'`
