@@ -1,6 +1,11 @@
 #!/bin/bash
 # ************************ Global Variables Start ************************
 
+echo "Make sure the templates are ready 11 macchinina-xen and 2. pass-machinnnia-xen"
+echo "Press Enter to Continue" ; read
+echo "Make sure that the dynamic routing is enabled"
+echo "Press Enter to Continue" ; read
+
 zone_name=Bootcamp
 
 template_name='"macchinina-xen"'
@@ -12,6 +17,7 @@ domain_name=wayne
 account=batman
 
 vpc_super_cidr=200.100.0.0/22
+vpc_super_netmask=255.255.252.0
 vpc_name=batman-vpc-001
 vpc_desc='"Batman VPC 001"'
 
@@ -36,6 +42,7 @@ vpc_tier2_netmask=255.255.255.0
 ##### second VPC
 
 vpc2_super_cidr=200.100.4.0/22
+vpc2_super_netmask=255.255.252.0
 vpc2_name=robin-vpc-001
 vpc2_desc='"Robin VPC 001"'
 
@@ -96,8 +103,8 @@ echo " "
 
 # ************************ Create VPC ************************
 echo "Creating VPC - please wait - this can take up to 2 mins"
-vpc_jobid=`$cli create vpc cidr=$vpc_super_cidr name=$vpc_name displaytext=$vpc_desc vpcofferingid=$vpc_offering_id zoneid=$zone_id account=$account domainid=$domain_id | grep ^jobid\ = | awk '{print $3}'`
-#echo "Created VPC JOB ID = " $vpc_jobid
+vpc_jobid=`$cli create vpc netmask=$vpc_super_netmask name=$vpc_name displaytext=$vpc_desc vpcofferingid=$vpc_offering_id zoneid=$zone_id account=$account domainid=$domain_id | grep ^jobid\ = | awk '{print $3}'`
+echo "Created VPC JOB ID = " $vpc_jobid
 
 vpc_status=`$cli query asyncjobresult jobid=$vpc_jobid | grep ^jobstatus\ = | awk '{print $3}'`
 while [[ $vpc_status == 0 ]]; do
@@ -198,7 +205,7 @@ echo " "
 
 # ************************ Create second VPC ************************
 echo "Creating second VPC - please wait - this can take up to 2 mins"
-vpc_jobid=`$cli create vpc cidr=$vpc2_super_cidr name=$vpc2_name displaytext=$vpc2_desc vpcofferingid=$vpc_offering_id zoneid=$zone_id account=$account domainid=$domain_id | grep ^jobid\ = | awk '{print $3}'`
+vpc_jobid=`$cli create vpc netmask=$vpc2_super_netmask name=$vpc2_name displaytext=$vpc2_desc vpcofferingid=$vpc_offering_id zoneid=$zone_id account=$account domainid=$domain_id | grep ^jobid\ = | awk '{print $3}'`
 #echo "Created VPC JOB ID = " $vpc_jobid
 
 vpc_status=`$cli query asyncjobresult jobid=$vpc_jobid | grep ^jobstatus\ = | awk '{print $3}'`
