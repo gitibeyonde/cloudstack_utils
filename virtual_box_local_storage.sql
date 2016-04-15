@@ -39,4 +39,4 @@ UPDATE cloud.vm_template SET removed=now() WHERE id="2";
 UPDATE cloud.vm_template SET url="http://192.168.217.11/centos56-x86_64.vhd.bz2" WHERE unique_name="centos56-x86_64-xen";
 UPDATE cloud.vm_template SET url="http://192.168.217.11/centos55-x86_64.qcow2.bz2" WHERE unique_name="centos55-x86_64";
 #http://192.168.217.11/macchinina-xen.vhd.bz2
-#UPDATE cloud.configuration SET value="true" WHERE name="system.vm.use.local.storage";
+UPDATE cloud.configuration SET value="true" WHERE name="system.vm.use.local.storage";
