@@ -235,5 +235,6 @@ $cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=mac
 #register template
 $cli register template url=http://192.168.217.11/macchinina-xen.vhd.bz2 name=pass-macchinina-xen displaytext=pass-macchinina-xen zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=$ostype_id passwordenabled=true ispublic=true isfeatured=true hvm=true
 
+$cli register template url=http://192.168.217.11/coreos-xen.vhd.bz2 name=ShapeBlue-CCS-Template displaytext=ShapeBlue-CCS-Template zoneid=$zone_id hypervisor=XenServer format=VHD ostypeid=255 passwordenabled=false ispublic=true isfeatured=true hvm=true
 
 echo "Done"

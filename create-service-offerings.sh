@@ -16,23 +16,6 @@ $cli set timeout 10
 $cli set color false
 $cli set display default
 
-# ======================== Remove Default Offerings ========================
-offeringid1=`$cli list serviceofferings name='"Small Instance"' | grep ^id\ = | awk '{print $3}'`
-offeringid2=`$cli list serviceofferings name='"Medium Instance"' | grep ^id\ = | awk '{print $3}'`
-
-echo "Deleting default Compute Offerings"
-$cli delete serviceoffering id=$offeringid1
-$cli delete serviceoffering id=$offeringid2
-
-diskofferingid1=`$cli list diskofferings name="Small" | grep ^id\ = | awk '{print $3}'`
-diskofferingid2=`$cli list diskofferings name="Medium" | grep ^id\ = | awk '{print $3}'`
-diskofferingid3=`$cli list diskofferings name="Large" | grep ^id\ = | awk '{print $3}'`
-
-echo "Deleting default Disk Offerings"
-$cli delete diskoffering id=$diskofferingid1
-$cli delete diskoffering id=$diskofferingid2
-$cli delete diskoffering id=$diskofferingid3
-
 # ======================== Add Offerings ========================
 #Add Compute Offerings
 echo "Adding new Bootcamp Compute Offerings"

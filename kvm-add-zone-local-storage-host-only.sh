@@ -175,11 +175,11 @@ echo "Added Hosts 2 for POD1 Cluster 1"
 
 
 # ************************ Add Primary Storage ************************
-echo "About to add Primary Storage - confirm all hosts are online in CloudStack UI before continuing"
-echo "Press Enter to Continue" ; read
-echo "Now adding Primary Storage"
-$cli create storagepool zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id name=$p1_cluster1_pri_stor1_name url=$p1_cluster1_pri_stor1_url
-echo "Added Primary Storage - "$p1_cluster1_pri_stor1_name
+#echo "About to add Primary Storage - confirm all hosts are online in CloudStack UI before continuing"
+#echo "Press Enter to Continue" ; read
+#echo "Now adding Primary Storage"
+#$cli create storagepool zoneid=$zone_id podid=$p1_pod_id clusterid=$p1_cluster1_id name=$p1_cluster1_pri_stor1_name url=$p1_cluster1_pri_stor1_url
+#echo "Added Primary Storage - "$p1_cluster1_pri_stor1_name
 
 #register template
 echo "About to register template, check if your system vms are up"
